@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="cnt"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="cnt"/>
+			<item value="current_value"/>
+			<item value="tmp"/>
+			<item value="Hall"/>
+			<item value="pwm_value"/>
+			<item value="voltage_value_z"/>
+			<item value="test"/>
+			<item value="tt"/>
+			<item value="IE"/>
+			<item value="hall_ctl_setup"/>
+			<item value="hall_handler"/>
+			<item value="PWM"/>
+			<item value="extern void hall_handler(int encode);"/>
+			<item value="pwm_handler"/>
+			<item value="PWM_cycle"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1118"/>
+		<item key="DIALOG_Y_ORIGIN" value="493"/>
+		<item key="DIALOG_WIDTH" value="344"/>
+		<item key="DIALOG_HEIGHT" value="442"/>
+		<item key="DIALOG_FONT_NAME" value="1|Microsoft JhengHei UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|5|0|Microsoft JhengHei UI"/>
+	</section>
+</section>

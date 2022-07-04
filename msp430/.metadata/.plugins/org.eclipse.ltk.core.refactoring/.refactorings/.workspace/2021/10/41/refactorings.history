@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;debounce_hw/init.c&apos;" deleteContents="false" description="Delete resource &apos;debounce_hw/init.c&apos;" element1="/debounce_hw/init.c" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1633593472715"/>&#x0A;<refactoring comment="Delete resource &apos;hw2/footprintdef.h&apos;" deleteContents="false" description="Delete resource &apos;hw2/footprintdef.h&apos;" element1="/hw2/footprintdef.h" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1633593492741"/>
+</session>

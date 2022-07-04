@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;timer.png&apos; to &apos;hw5&apos;" description="Move &apos;timer.png&apos; to &apos;hw5&apos;" destination="/hw5" element1="/hw3/timer.png" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1634816183387" updateReferences="true"/>
+</session>

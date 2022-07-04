@@ -1,0 +1,26 @@
+/*
+ * hw.h
+ *
+ *  Created on: 2022¦~1¤ë3¤é
+ *      Author: Lichmore
+ */
+
+#ifndef HW_H_
+#define HW_H_
+
+#define Debounce 36500
+#define pwm_MAX 3585
+#define pwm_MIN 718
+#define voltage_MAX 4096
+#define voltage_MIN 0
+#define current_MAX 4096
+#define current_MIN 0
+#define DUTY 520
+
+#define POS_LOW 521
+#define POS_HIGH 0
+
+
+
+
+#endif /* HW_H_ */

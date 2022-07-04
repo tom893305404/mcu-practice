@@ -1,0 +1,4 @@
+#Thu Dec 23 20:44:30 CST 2021
+__DEFAULT__=false
+org.eclipse.help.ui.localSearch.master=true
+expression=folding

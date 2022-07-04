@@ -1,0 +1,114 @@
+/*
+ * interrupt.c
+ *
+ *  Created on: 2021年12月23日
+ *      Author: Lichmore
+ */
+#include <msp430.h>
+#include "hw.h"
+/*
+ * 3A 941 245 243 310 263
+ * 2.5A 1012 204
+ * 2A 145
+ * 1.5A 103
+ * 1A  62
+ * 0.5A 38
+ * */
+/*
+ * voltage 1873
+ *
+ *
+ * */
+
+extern unsigned int pwm_value_z;
+extern unsigned int current_value_z;
+extern unsigned int voltage_value_z;
+extern unsigned int pwm_value;
+extern unsigned int current_value;
+extern unsigned int voltage_value;
+extern unsigned int hall_value;
+unsigned int cnt=0, current_avg=0;
+//volatile unsigned int test=0;
+extern void pwm_handler(unsigned int U_H,unsigned int U_L,unsigned int V_H,unsigned int V_L,unsigned int W_H,unsigned int W_L);
+#pragma vector=ADC12_VECTOR
+__interrupt void ADC_0(void)
+{
+    P3OUT |= (BIT2);
+    // AD s/h
+    if(ADC12IFG == 0x0004)
+    {
+        current_value_z = ADC12MEM0; //current
+        voltage_value_z = ADC12MEM2; // vdd //讀值
+        pwm_value_z = ADC12MEM1;     //860 748 841
+
+        if(cnt++<5){
+            current_avg += voltage_value_z >>2;
+        }else{
+            current_value =current_avg;
+            current_avg = 0;
+            cnt = 0;
+        }
+
+
+        pwm_value = pwm_MAX - pwm_value_z;
+
+            if(pwm_value < 170){ //大於80%保護
+                pwm_value = 170; //1040 * (1-0.8)==
+            }else{
+                pwm_value = (pwm_value>2880)? 1040:(unsigned int)(pwm_value*0.3);
+                //pwm_value = (pwm_value>2910)? 1040:(pwm_value/pwm_MAX * 1040);//小於670&&一般輸入 3580-670=2910
+            }
+
+       if(current_value_z>300){//電流限制3A
+           pwm_value += 500;
+       }
+
+
+      P3OUT &= ~(BIT2);
+    }
+    else
+    {
+        ADC12CTL0 = ADC12CTL0 | (BIT0);//ADC12SC = 1
+      //  ADC12CTL0 = ADC12CTL0 & (~BIT0);//ADC12SC = 0
+
+    }
+    ADC12IFG = 0x0000;//clear interrupt flag
+}
+//===========================================================
+#pragma vector=TIMER0_A0_VECTOR
+__interrupt void Timer_A0_CCR0(void)
+{
+    P3OUT |= (BIT1);
+    //Duty 送 CCR
+    switch(hall_value){
+    case 64:
+        pwm_handler(SECTION1);
+            break;
+    case 8:
+        pwm_handler(SECTION3);
+            break;
+    case 72:
+        pwm_handler(SECTION2);
+            break;
+    case 1:
+        pwm_handler(SECTION5);
+            break;
+    case 65:
+        pwm_handler(SECTION6);
+            break;
+    case 9:
+        pwm_handler(SECTION4);
+            break;
+    default:
+        break;
+    }
+    P3OUT &= ~(BIT1);
+    // AD s/h
+    //ADC12CTL0 = ADC12CTL0 & (~BIT0);//ADC12SC = 0
+    ADC12CTL0 = ADC12CTL0 | (BIT0);//ADC12SC = 1
+    //ADC12CTL0 = ADC12CTL0 & (~BIT0);//ADC12SC = 0
+
+
+    TA0CCTL0 = TA0CCTL0 & (~BIT0);//clear CCR0 CCIFG flag
+}
+
